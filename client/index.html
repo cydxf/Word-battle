@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Word Battle</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="manifest" href="manifest.webmanifest">
+</head>
+<body>
+  <main id="app">    <!-- 顶栏：标题 + 全屏 -->
+    <div class="topbar">
+      <h1>Word Battle 👑</h1>
+      <button id="fullscreen" class="full-btn" title="全屏 / 退出全屏">⛶</button>
+    </div>
+
+    <!-- 动态内容写入这里 -->
+    <section class="main" id="view"></section>
+  </main>
+
+  <!-- 同源 Socket.IO 客户端（确保版本一致） -->
+  <script src="/socket.io/socket.io.js"></script>
+  <script type="module" src="app.js"></script>
+
+  <script>
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('./sw.js');
+    }
+  </script>
+</body>
+</html>

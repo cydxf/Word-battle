@@ -1,0 +1,94 @@
+/* —— 全局 —— */
+html,body{height:100%;margin:0;font-family:system-ui,Arial;background:#fffdf9;color:#333}
+button,select,input{font:inherit}
+button{cursor:pointer;border:none;border-radius:6px;padding:.7rem 1.2rem;transition:background .2s,box-shadow .2s}
+button.primary{background:#ff9f43;color:#fff}
+button.primary:hover{box-shadow:0 2px 8px #ff9f4355}
+button.secondary{background:#6c7a89;color:#fff}
+button.warn{background:#ff6b6b;color:#fff}
+h1{margin:0;font-size:1.9rem;text-align:center}
+
+/* —— 容器：全屏 —— */
+#app{
+  width:100vw;height:100vh;
+  display:flex;flex-direction:column;
+  padding:1.2rem 1.5rem;box-sizing:border-box;
+  overflow:hidden;
+  background:#fffdf9;
+}
+
+/* —— 顶栏 —— */
+.topbar{display:flex;justify-content:space-between;align-items:center}
+.topbar select,.topbar input{
+  background:#fff;border:1px solid #dcdcdc;border-radius:4px;color:#333;padding:.4rem .6rem
+}
+.full-btn{background:none;color:#666;font-size:1.3rem;margin-left:.5rem}
+
+/* —— 主区域 —— */
+.main{flex:1;display:flex;flex-direction:column;justify-content:center;overflow:auto}
+.question{font-size:2rem;margin:1.3rem 0;text-align:center}
+.options{display:grid;grid-template-columns:1fr 1fr;gap:1.2rem}
+.options button{
+  background:#fff;color:#333;padding:1.1rem;border-radius:10px;border:1px solid #ececec;
+}
+.options button:hover{background:#ffe7c6}
+.correct{background:#d3f9d8!important}          /* 柔和绿 */
+.wrong{background:#ff6b6b33!important}
+
+/* —— PK 组件 —— */
+.scoreboard{display:flex;justify-content:space-around;margin-bottom:.8rem}
+.scoreboard div{flex:1;text-align:center;font-weight:600;font-size:1.1rem}
+#countdown{position:relative;width:110px;height:110px;margin:0 auto 1rem}
+#countdown svg{transform:rotate(-90deg)}
+#countdown circle{fill:none;stroke-linecap:round;stroke-width:10}
+#ringBg{stroke:#dfe6e9}
+#ringBar{stroke:#ff9f43}
+#countNum{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:1.4rem}
+
+/* —— 结果卡片 —— */
+.result-card{
+  max-width:520px;margin:auto;background:#fff;border:1px solid #f1f1f1;
+  padding:2rem;border-radius:10px;text-align:center;box-shadow:0 4px 10px #00000014
+}
+.result-card h2{margin-top:0;color:#ff9f43}
+.result-card table{width:100%;margin:1.2rem 0;border-collapse:collapse}
+.result-card td,th{padding:.6rem 0;border-bottom:1px solid #f1f1f1}
+.center{text-align:center}
+.waiting{font-size:1.2rem;text-align:center;padding:2rem}
+
+/* === 首页控件居中 === */
+.form-row{
+  display:flex;
+  justify-content:center;      /* 水平居中 */
+  align-items:center;
+  gap:1.2rem;                  /* 控件间距 */
+  flex-wrap:wrap;              /* 小屏自动换行 */
+  margin:1.5rem 0;
+}
+
+/* === 题干可见 & 间距 === */
+.question{
+  font-size:2rem;
+  margin:1.6rem .5rem;         /* 上下间距略增 */
+  text-align:center;
+  position:relative;           /* 建立层级上下文 */
+  z-index:2;                   /* 始终在倒计时环之上 */
+}
+
+/* === 倒计时区与题干分离 === */
+#countdown{
+  margin: 0 auto 2.2rem;        /* 原 1.2rem → 2.2rem */
+  z-index:1;                    /* 仍低于 .question */
+}
+
+
+/* styles.css — 直接粘到文件末尾即可 */
+.question{
+  position:relative;            /* 建立层级 */
+  z-index: 5;                   /* 高于倒计时环 */
+  pointer-events:none;          /* 不挡住点选项 */
+  min-height:2.5rem;
+}
+.question button{               /* ▶︎ 按钮需要可点 */
+  pointer-events:auto;          /* 单独恢复 */
+}
